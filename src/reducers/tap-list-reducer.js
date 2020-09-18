@@ -1,7 +1,7 @@
 export default (state = {}, action) => {
   const { brewery, beer, style, price, abv, count, id } = action;
   switch(action.type) {
-    case 'ADD_POST':
+    case 'ADD_TAP':
       return Object.assign({}, state, {
         [id]: {
           brewery: brewery,

@@ -10,6 +10,7 @@ describe('tapListReducer', () => {
       price: '6',
       abv: '5.5',
       count: 142,
+      id: 1
     }
 
     const currentState = {
@@ -20,6 +21,7 @@ describe('tapListReducer', () => {
         price: '6',
         abv: '5.5',
         count: 142,
+        id: 1
       },
       2: {
         brewery: 'Fort George',
@@ -28,6 +30,7 @@ describe('tapListReducer', () => {
         price: '6',
         abv: '7',
         count: 142,
+        id: 2
       }
     }
 
@@ -44,6 +47,7 @@ describe('tapListReducer', () => {
           price: '6',
           abv: '7',
           count: 142,
+          id: 2
         }
       });
     });
@@ -51,7 +55,7 @@ describe('tapListReducer', () => {
     test('Should successfully add new tap data to masterTapList', () => {
       const { brewery, beer, style, price, abv, count, id } = postData;
       action = {
-        type: 'ADD_POST',
+        type: 'ADD_TAP',
         brewery: brewery,
         beer: beer,
         style: style,
@@ -73,4 +77,41 @@ describe('tapListReducer', () => {
       }
     });
   });
+
+  test('Should successfully update a tap', () => {
+    const { title, author, body, date, picture, vote, id } = postData;
+    action = {
+      type: 'ADD_TAP',
+      title: title,
+      author: author, 
+      body: body,
+      date: date,
+      picture: picture,
+      vote: vote,
+      id: id
+    }
+
+    const stateToUpdate = tapListReducer({}, action);
+      const updateAction =  {
+        type: 'ADD_TAP',
+        brewery: 'Breakside',
+        beer: 'Wanderlust',
+        style: 'IPA',
+        price: '6',
+        abv: '5.5',
+        count: 142,
+        id: id
+      }
+      expect(tapListReducer(stateToUpdate, updateAction)).toEqual({
+        [id] : {
+        brewery: 'Breakside',
+        beer: 'Wanderlust',
+        style: 'IPA',
+        price: '6',
+        abv: '5.5',
+        count: 142,
+        id: id
+        }
+      });
+    });
 })
