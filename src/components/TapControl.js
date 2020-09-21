@@ -3,6 +3,8 @@ import TapList from './TapList';
 import NewTapForm from './NewTapForm';
 import TapEdit from "./TapEdit";
 import TapDetail from "./TapDetail";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class TapControl extends React.Component {
 
